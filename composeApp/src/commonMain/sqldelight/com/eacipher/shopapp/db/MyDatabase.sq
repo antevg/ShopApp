@@ -1,0 +1,52 @@
+CREATE TABLE IF NOT EXISTS add_item (
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+name TEXT NOT NULL,
+isChecked INTEGER NOT NULL,
+listId INTEGER NOT NULL);
+
+INSERT OR REPLACE INTO add_item (id, name, isChecked, listId)
+VALUES (12,"name", 0, 0);
+
+getItemsByListId:
+SELECT * FROM add_item WHERE listId = :listId;
+
+insertAddItem:
+INSERT OR REPLACE INTO add_item (name, isChecked, listId)
+VALUES (:name, :isChecked,  :listId);
+
+replaceAddItem:
+INSERT OR REPLACE INTO add_item (id, name, isChecked, listId)
+VALUES (:id, :name, :isChecked,  :listId);
+
+deleteAddItems:
+DELETE FROM add_item WHERE listId = :listId;
+
+deleteItem:
+DELETE FROM add_item WHERE id = :id;
+
+CREATE TABLE shopping_list_name (
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+name TEXT NOT NULL,
+time TEXT NOT NULL,
+allItemCount INTEGER NOT NULL,
+allSelectedItemsCount INTEGER NOT NULL);
+
+INSERT OR REPLACE INTO shopping_list_name (id, name, time, allItemCount, allSelectedItemsCount)
+VALUES (12, "?", "?", 0,0);
+
+getAllItems:
+SELECT * FROM shopping_list_name;
+
+insertItem:
+INSERT OR REPLACE INTO shopping_list_name (name, time, allItemCount, allSelectedItemsCount)
+VALUES (?, ?, ?, ?);
+
+replaceItem:
+INSERT OR REPLACE INTO shopping_list_name (id, name, time, allItemCount, allSelectedItemsCount)
+VALUES (?,?, ?, ?, ?);
+
+deleteShoppingList:
+DELETE FROM shopping_list_name WHERE id = :listId;
+
+getListItemById:
+SELECT * FROM shopping_list_name WHERE id = :listId;
