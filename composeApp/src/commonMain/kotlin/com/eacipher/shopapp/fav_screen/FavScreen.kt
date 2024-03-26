@@ -73,27 +73,15 @@ fun FavScreen() {
                 verticalItemSpacing = 10.dp,
                 horizontalArrangement = Arrangement.spacedBy(4.dp),
             ) {
-                item{
-                    Text(text = "First")
-                }
-                items(items.size) {
-                    Text(
-                        modifier = Modifier.background(Color.DarkGray),
-                        text = items[it].name,
-                    )
-                    IconButton(onClick = {
-
-                    })
-                    {
-                        Icon(
-                            imageVector = Icons.Default.Image,
-                            contentDescription = "Refresh",
-                            tint = Color.White,
-                        )
+                items(items.size) {index ->
+                    ItemUiPreview(items[index]) { event ->
+                        viewModel.onEvent(event)
                     }
                 }
             }
-          //  MainDialog(dialogController = viewModel)
+
+
+            ItemUiFull(itemFullController = viewModel)
         }
     }
 
