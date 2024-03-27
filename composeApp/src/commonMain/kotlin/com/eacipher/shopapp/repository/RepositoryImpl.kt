@@ -7,6 +7,7 @@ import com.eacipher.shopapp.entity.AddItem
 import dev.gitlive.firebase.Firebase
 import dev.gitlive.firebase.firestore.firestore
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import kotlin.coroutines.CoroutineContext
@@ -18,14 +19,39 @@ class RepositoryImpl(private val dao: Database) : Repository, KoinComponent {
         dao.replaceItem(item)
 
         val db = Firebase.firestore
+
         val serItem  = AddItem(
             id = item.id.toInt(),
             name = item.name,
             isChecked = true,
             listId = 1
         )
+
+        val taskData = HashMap<String, Any>()
+        taskData["title"] = serItem.name
+        taskData["item"] = serItem
+
         db.collection("items")
-            .add(serItem)
+            .document(item.id.toString())
+            .set(serItem)
+          //  .set(taskData)
+           // .add(taskData)
+
+        val getValue =
+            db.collection("items")
+                .get()
+
+        val list = getValue.documents
+        list.forEach {
+            println(it.data<AddItem>().toString())
+        }
+        val item0 = list[0].data<AddItem>()
+        println(item0.toString())
+
+
+
+
+
     }
 
 

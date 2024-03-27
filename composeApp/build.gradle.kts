@@ -79,6 +79,7 @@ kotlin {
             implementation(libs.firebase.common)
             implementation(libs.firebase.firestore)
             implementation(libs.firebase.auth)
+           // implementation(libs.firebase.database)
 
 
 

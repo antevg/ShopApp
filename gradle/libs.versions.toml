@@ -30,7 +30,7 @@ uiToolingPreviewAndroid = "1.6.2"
 
 firebase-database = "20.3.1"
 firebase-auth = "22.3.1"
-firebaseCommon = "1.10.0"
+firebaseCommon = "1.11.1"
 com-google-firebase-firebase-auth = "22.0.0"
 
 
@@ -77,6 +77,8 @@ androidx-ui-tooling-preview-android = { group = "androidx.compose.ui", name = "u
 firebase-common = { module = "dev.gitlive:firebase-common", version.ref = "firebaseCommon" }
 firebase-firestore = { module = "dev.gitlive:firebase-firestore", version.ref = "firebaseCommon" }
 firebase-auth = { module = "dev.gitlive:firebase-auth", version.ref = "firebaseCommon" }
+firebase-database = { module = "dev.gitlive:firebase-database", version.ref = "firebase-database" }
+
 
 [plugins]
 
