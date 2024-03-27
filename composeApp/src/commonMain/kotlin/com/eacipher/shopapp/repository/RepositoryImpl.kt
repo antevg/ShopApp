@@ -15,17 +15,33 @@ import kotlin.coroutines.CoroutineContext
 class RepositoryImpl(private val dao: Database) : Repository, KoinComponent {
 
 
+    suspend fun getData(): List<AddItem> {
+        val db = Firebase.firestore
+        try {
+            val getValue =
+                db.collection("items").get()
+            return getValue.documents.map {
+                it.data()
+            }
+        } catch (e: Exception) {
+            throw e
+        }
+
+    }
+
     override suspend fun insertItem(item: Shopping_list_name) {
         dao.replaceItem(item)
 
-        val db = Firebase.firestore
 
-        val serItem  = AddItem(
+        val serItem = AddItem(
             id = item.id.toInt(),
             name = item.name,
             isChecked = true,
             listId = 1
         )
+
+
+        val db = Firebase.firestore
 
         val taskData = HashMap<String, Any>()
         taskData["title"] = serItem.name
@@ -34,8 +50,8 @@ class RepositoryImpl(private val dao: Database) : Repository, KoinComponent {
         db.collection("items")
             .document(item.id.toString())
             .set(serItem)
-          //  .set(taskData)
-           // .add(taskData)
+        //  .set(taskData)
+        // .add(taskData)
 
         val getValue =
             db.collection("items")
@@ -44,12 +60,10 @@ class RepositoryImpl(private val dao: Database) : Repository, KoinComponent {
         val list = getValue.documents
         list.forEach {
             println(it.data<AddItem>().toString())
+            println(it.id)
         }
         val item0 = list[0].data<AddItem>()
         println(item0.toString())
-
-
-
 
 
     }
@@ -65,7 +79,6 @@ class RepositoryImpl(private val dao: Database) : Repository, KoinComponent {
             dao.insertAddItem(item)
         else
             dao.replaceAddItem(item)
-
 
 
     }

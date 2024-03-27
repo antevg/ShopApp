@@ -9,6 +9,9 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material3.ExperimentalMaterial3Api
 import com.eacipher.shopapp.di.sharedModule
+import com.eacipher.shopapp.entity.AddItem
+import dev.gitlive.firebase.Firebase
+import dev.gitlive.firebase.firestore.firestore
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import org.koin.core.context.startKoin
@@ -54,3 +57,4 @@ internal actual fun openUrl(url: String?) {
     }
     AndroidApp.INSTANCE.startActivity(intent)
 }
+
