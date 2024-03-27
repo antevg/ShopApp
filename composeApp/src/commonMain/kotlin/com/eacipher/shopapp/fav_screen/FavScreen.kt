@@ -1,5 +1,6 @@
 package com.eacipher.shopapp.fav_screen
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxSize
@@ -32,6 +33,7 @@ import com.eacipher.ShoppingKMP.shopping_list_screen.UiShoppingListItem
 import com.eacipher.shopapp.db.Shopping_list_name
 import com.eacipher.shopapp.dialog.MainDialog
 import com.eacipher.shopapp.shopping_list_screen.ShoppingListEvent
+import com.seiko.imageloader.rememberImagePainter
 import org.koin.compose.KoinContext
 import org.koin.compose.koinInject
 
@@ -41,6 +43,7 @@ fun FavScreen() {
     KoinContext {
         val viewModel: FavViewModel = koinInject()
         val items = viewModel.list//.collectAsState(initial = emptyList())
+        val painter = rememberImagePainter("http://eacipher.com/img/eanoteslogo.jpg")
         Scaffold(
             topBar = {
                 TopAppBar(
@@ -63,6 +66,11 @@ fun FavScreen() {
                     })
             }
         ) { padding ->
+
+            Image(
+                painter = painter,
+                contentDescription = "image",
+            )
 
             LazyVerticalStaggeredGrid(
                 modifier = Modifier

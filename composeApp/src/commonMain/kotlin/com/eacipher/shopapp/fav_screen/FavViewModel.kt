@@ -36,6 +36,7 @@ class FavViewModel(
             Fav(5,"name5"),
         )
 
+
     private val _uiEvent = Channel<UiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
 

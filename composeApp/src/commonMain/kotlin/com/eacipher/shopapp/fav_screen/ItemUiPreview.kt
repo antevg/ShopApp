@@ -1,5 +1,6 @@
 package com.eacipher.shopapp.fav_screen
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -24,11 +25,14 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-
+import com.seiko.imageloader.rememberImagePainter
 
 
 @Composable
 fun ItemUiPreview(item: Fav, onEvent: (FavEvents) -> Unit) {
+
+    val painter =
+        rememberImagePainter("https://firebasestorage.googleapis.com/v0/b/eadiary-5630a.appspot.com/o/main%2FKbufMZdoeRP559F8l8eoeSbdvLv1%2Fimage_1704038587169?alt=media&token=c70a89ef-c3b9-43d0-b56b-c22fd238ff7e")
     Card(
         modifier = Modifier
             .padding(2.dp)
@@ -47,25 +51,14 @@ fun ItemUiPreview(item: Fav, onEvent: (FavEvents) -> Unit) {
         ) {
             Column {
                 //Photo
-                IconButton(
-                    onClick = {
-                        onEvent(FavEvents.OnItemClick(item))
-                    },
-                    modifier = Modifier
-                        .padding(5.dp)
-                        .size(30.dp)
-                ) {
-                    Icon(
-                        imageVector = Icons.Default.Edit,
-                        contentDescription = "Edit",
-                        modifier = Modifier
-                            .clip(CircleShape)
-                            .background(Color.Blue)
-                            .padding(5.dp),
-                        tint = Color.White
-                    )
-                }
 
+                Image(
+                    painter = painter,
+                    contentDescription = "Edit",
+                    modifier = Modifier
+                        .background(Color.Blue)
+
+                )
 
                 Text(
                     text = item.name,
