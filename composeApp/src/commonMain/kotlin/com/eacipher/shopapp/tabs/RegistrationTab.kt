@@ -8,8 +8,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabOptions
+import com.eacipher.shopapp.firebase.screens.login.LoginScreen
+import com.eacipher.shopapp.firebase.screens.registration.RegistrationScreen
 
-object ProfileTab: Tab {
+object RegistrationTab: Tab {
     override val options: TabOptions
         @Composable
         get() {
@@ -27,6 +29,6 @@ object ProfileTab: Tab {
 
     @Composable
     override fun Content() {
-        Text("ProfileTab")
+       LoginScreen()
     }
 }

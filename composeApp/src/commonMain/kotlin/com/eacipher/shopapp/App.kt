@@ -3,14 +3,12 @@ package com.eacipher.shopapp
 import androidx.compose.foundation.background
 
 import androidx.compose.foundation.layout.RowScope
-import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 
 import androidx.compose.material3.BottomAppBar
 
 
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBarItem
 
 import androidx.compose.material3.Scaffold
@@ -30,7 +28,7 @@ import com.eacipher.ShoppingKMP.shopping_list_screen.ShoppingListViewModel
 
 import com.eacipher.shopapp.tabs.FavoritesTab
 import com.eacipher.shopapp.tabs.HomeTab
-import com.eacipher.shopapp.tabs.ProfileTab
+import com.eacipher.shopapp.tabs.RegistrationTab
 import com.eacipher.shopapp.theme.AppTheme
 import org.koin.compose.KoinContext
 import org.koin.compose.koinInject
@@ -50,7 +48,7 @@ internal fun App() = AppTheme {
                 tabDisposable = {
                     TabDisposable(
                         navigator = it,
-                        tabs = listOf(HomeTab, FavoritesTab, ProfileTab)
+                        tabs = listOf(HomeTab, FavoritesTab, RegistrationTab)
                     )
                 }
             ) { tabNavigator ->
@@ -65,7 +63,7 @@ internal fun App() = AppTheme {
                         ){
                             TabNavigationItem(HomeTab)
                             TabNavigationItem(FavoritesTab)
-                            TabNavigationItem(ProfileTab)
+                            TabNavigationItem(RegistrationTab)
                         }
                     }
                 )

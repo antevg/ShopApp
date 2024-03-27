@@ -28,6 +28,10 @@ koinviewmodel = "3.1.2"
 lifecycleViewmodelCompose = "2.7.0"
 uiToolingPreviewAndroid = "1.6.2"
 
+firebase-database = "20.3.1"
+firebase-auth = "22.3.1"
+firebaseCommon = "1.10.0"
+com-google-firebase-firebase-auth = "22.0.0"
 
 
 [libraries]
@@ -70,6 +74,9 @@ voyager-tab-navigator = { module = "cafe.adriel.voyager:voyager-tab-navigator", 
 voyager-bottom-sheet = { module = "cafe.adriel.voyager:voyager-bottom-sheet-navigator", version.ref = "voyager" }
 androidx-lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycleViewmodelCompose" }
 androidx-ui-tooling-preview-android = { group = "androidx.compose.ui", name = "ui-tooling-preview-android", version.ref = "uiToolingPreviewAndroid" }
+firebase-common = { module = "dev.gitlive:firebase-common", version.ref = "firebaseCommon" }
+firebase-firestore = { module = "dev.gitlive:firebase-firestore", version.ref = "firebaseCommon" }
+firebase-auth = { module = "dev.gitlive:firebase-auth", version.ref = "firebaseCommon" }
 
 [plugins]
 

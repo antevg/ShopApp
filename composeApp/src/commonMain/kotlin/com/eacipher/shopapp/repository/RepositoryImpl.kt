@@ -3,6 +3,9 @@ package com.eacipher.shopapp.repository
 import com.eacipher.shopapp.db.Add_item
 import com.eacipher.shopapp.db.Database
 import com.eacipher.shopapp.db.Shopping_list_name
+import com.eacipher.shopapp.entity.AddItem
+import dev.gitlive.firebase.Firebase
+import dev.gitlive.firebase.firestore.firestore
 import kotlinx.coroutines.flow.Flow
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -13,6 +16,16 @@ class RepositoryImpl(private val dao: Database) : Repository, KoinComponent {
 
     override suspend fun insertItem(item: Shopping_list_name) {
         dao.replaceItem(item)
+
+        val db = Firebase.firestore
+        val serItem  = AddItem(
+            id = item.id.toInt(),
+            name = item.name,
+            isChecked = true,
+            listId = 1
+        )
+        db.collection("items")
+            .add(serItem)
     }
 
 
@@ -26,6 +39,9 @@ class RepositoryImpl(private val dao: Database) : Repository, KoinComponent {
             dao.insertAddItem(item)
         else
             dao.replaceAddItem(item)
+
+
+
     }
 
     override suspend fun deleteItem(item: Add_item) {

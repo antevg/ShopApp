@@ -1,3 +1,8 @@
+buildscript {
+    dependencies {
+        classpath("com.google.gms:google-services:4.4.1")
+    }
+}
 plugins {
     alias(libs.plugins.multiplatform).apply(false)
     alias(libs.plugins.compose).apply(false)

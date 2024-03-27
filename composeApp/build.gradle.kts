@@ -8,6 +8,7 @@ plugins {
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.sqlDelight)
     alias(libs.plugins.apollo)
+    id("com.google.gms.google-services")
 }
 
 kotlin {
@@ -73,6 +74,13 @@ kotlin {
 
             implementation("app.cash.sqldelight:coroutines-extensions:2.0.0")
 
+            // Firebase
+
+            implementation(libs.firebase.common)
+            implementation(libs.firebase.firestore)
+            implementation(libs.firebase.auth)
+
+
 
         }
 
@@ -137,6 +145,7 @@ android {
         kotlinCompilerExtensionVersion = "1.5.4"
     }
 }
+
 
 
 buildConfig {

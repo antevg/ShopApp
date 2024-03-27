@@ -57,6 +57,9 @@ fun ItemUiPreview(item: Fav, onEvent: (FavEvents) -> Unit) {
                     contentDescription = "Edit",
                     modifier = Modifier
                         .background(Color.Blue)
+                        .clickable {
+                            onEvent(FavEvents.OnItemClick(item))
+                        }
 
                 )
 
