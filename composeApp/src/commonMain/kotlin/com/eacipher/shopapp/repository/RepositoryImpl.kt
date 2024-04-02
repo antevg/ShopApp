@@ -4,9 +4,14 @@ import com.eacipher.shopapp.db.Add_item
 import com.eacipher.shopapp.db.Database
 import com.eacipher.shopapp.db.Shopping_list_name
 import com.eacipher.shopapp.entity.AddItem
+import com.eacipher.shopapp.firebase.domain.model.FavItem
 import dev.gitlive.firebase.Firebase
+import dev.gitlive.firebase.firestore.Direction
 import dev.gitlive.firebase.firestore.firestore
+import dev.gitlive.firebase.firestore.orderBy
+//import dev.gitlive.firebase.firestore.firestore
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.map
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -19,19 +24,35 @@ class RepositoryImpl(private val dao: Database) : Repository, KoinComponent {
         val db = Firebase.firestore
         try {
             val getValue =
-                db.collection("items").get()
+                db.collection("items").orderBy("id", Direction.DESCENDING).get()
             return getValue.documents.map {
                 it.data()
             }
         } catch (e: Exception) {
             throw e
         }
-
     }
+
+
+    suspend fun insertFav(item: FavItem) {
+
+
+        val db = Firebase.firestore
+        db.collection("favs")
+            .document(item.id.toString())
+            .set(item)
+    }
+
 
     override suspend fun insertItem(item: Shopping_list_name) {
         dao.replaceItem(item)
 
+        insertFav(
+            FavItem(
+                id = 12,
+                name = item.name
+            )
+        )
 
         val serItem = AddItem(
             id = item.id.toInt(),
@@ -43,9 +64,11 @@ class RepositoryImpl(private val dao: Database) : Repository, KoinComponent {
 
         val db = Firebase.firestore
 
+   //     val resp = db.collection("items")
+
         val taskData = HashMap<String, Any>()
-        taskData["title"] = serItem.name
         taskData["item"] = serItem
+
 
         db.collection("items")
             .document(item.id.toString())
@@ -64,6 +87,7 @@ class RepositoryImpl(private val dao: Database) : Repository, KoinComponent {
         }
         val item0 = list[0].data<AddItem>()
         println(item0.toString())
+
 
 
     }

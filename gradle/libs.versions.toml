@@ -34,6 +34,7 @@ firebaseCommon = "1.11.1"
 com-google-firebase-firebase-auth = "22.0.0"
 
 
+
 [libraries]
 koin-viewmodel = {module ="io.insert-koin:koin-android-viewmodel",  version.ref = "koin"}
 androidx-lifecycle-viewmodel-v270 = { module = "androidx.lifecycle:lifecycle-viewmodel", version.ref = "lifecycleViewmodel" }

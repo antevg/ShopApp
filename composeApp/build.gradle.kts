@@ -146,6 +146,9 @@ android {
         kotlinCompilerExtensionVersion = "1.5.4"
     }
 }
+dependencies {
+    implementation(libs.firebase.firestore)
+}
 
 
 
